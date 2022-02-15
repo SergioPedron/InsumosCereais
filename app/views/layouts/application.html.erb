@@ -11,6 +11,19 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= nav_bar brand: "Insumos para Cereais", brand_link: root_url do %>
+      <%= menu_group do %>
+        <%= menu_item "Criar Novo Insumo", new_insumo_path %>
+      <% end %>
+      <%= form_tag busca_insumo_path, method: :get, class:"navbar-form navbar-right" do %>
+        <div class="forms-group" >
+          <%= text_field_tag :descricao, @descricao, class:"form-control"%>
+          <%= button_to "Buscar", nil, class:"btn btn-default" %>
+        </div>
+      <% end %>  
+    <% end %>  
+    <div class="container">
+      <%= yield %>
+    </div>  
   </body>
 </html>

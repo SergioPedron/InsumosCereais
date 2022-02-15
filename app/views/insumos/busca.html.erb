@@ -1,5 +1,3 @@
-<!-- nav_bar e container vão para views/layouts/application.html.erb para não repetir código -->
-
 <table class="table table-bordered table hover">
     <thead>
         <tr>
@@ -11,7 +9,7 @@
         </tr>
     </thead>
     <body>
-        <%@ConsInsumos.each do |insumo| %>
+        <%@insumos.each do |insumo| %>
             <tr>
                 <td><%=insumo.codigo%></td>
                 <td><%=insumo.descricao%></td>
@@ -25,26 +23,3 @@
         <%end%>
     </body>
 </table>
-<div class="alert alert-success" role="alert">
-    <h4 class="alert-heading">Insumo com Desconto</h4>
-</div>
-<table class="table table-bordered table hover">
-    <thead>
-        <tr>
-            <td>Código</td>
-            <td>Descrição</td>
-            <td>Preço</td>
-            <td>Quantidade</td>
-        </tr>
-    </thead>
-    <body>
-        <%@ConsInsumos_com_desconto.each do |insumo| %>
-            <tr>
-                <td><%=insumo.codigo%></td>
-                <td><%=insumo.descricao%></td>
-                <td><%=insumo.preco%></td>
-                <td><%=insumo.quantidade%></td>
-            </tr>
-        <%end%>
-    </body>
-</table>        

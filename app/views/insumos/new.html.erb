@@ -1,12 +1,43 @@
-<html>
-    <body>
-        <%= form_for Insumo.new do |form| %> 
-            Código <input type="text" name="insumo[codigo]"><br/>
-            Descrição <textarea name="insumo[descricao]"></textarea><br/>
-            Preço <input type="number" name="insumo[preco]" step="0.01"><br/>
-            Quantidade <input type="number" name="insumo[quantidade]" step="0.01"><br/>
-            
-            <button type="submit">Criar</button> 
-        <% end %>
-    </body>
-</html>
+<!-- nav_bar e container vão para views/layouts/application.html.erb para não repetir código -->
+
+<%= form_for Insumo.new do |form| %> 
+
+    <div class="row">                                      <!-- classes bootstrap -->
+        <div class="col-sm-2">
+            <div class="form-group">
+                <%= form.label :codigo, "Código" %>        <!-- Helpers do Rails -->
+                <%= form.text_field :codigo, class:"form-control" %>
+            </div>  
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="form-group">
+                <%= form.label :descricao, "Descrição" %>
+                <%= form.text_area :descricao, class:"form-control", rows:2 %>
+            </div>  
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="form-group">
+                <%= form.label :preco, "Preço" %>
+                <%= form.number_field :preco, step:0.01, class:"form-control" %>
+            </div>  
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="form-group">
+                <%= form.label :quantidade, "Quantidade" %>
+                <%= form.number_field :quantidade, step:0.01, class:"form-control" %>
+            </div>  
+        </div>
+    </div>
+
+    <%= form.submit "Criar", class:"btn btn-primary" %>
+
+<% end %>

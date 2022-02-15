@@ -7,6 +7,18 @@ class InsumosController < ApplicationController
     def create
         insumo = params.require(:insumo).permit(:codigo, :descricao, :preco, :quantidade)
         Insumo.create insumo
-        redirect_to root_path
+        redirect_to root_url
     end
+
+    def destroy
+        id = params[:id]
+        Insumo.destroy id
+        redirect_to root_url
+    end
+
+    def busca
+        @descricao = params[:descricao]            
+        @insumos = Insumo.where "lower(descricao) like ?", "%#{@descricao.downcase}%"
+    end
+
 end
