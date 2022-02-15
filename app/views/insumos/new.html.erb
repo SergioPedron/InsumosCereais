@@ -1,0 +1,12 @@
+<html>
+    <body>
+        <%= form_for Insumo.new do |form| %> 
+            Código <input type="text" name="insumo[codigo]"><br/>
+            Descrição <textarea name="insumo[descricao]"></textarea><br/>
+            Preço <input type="number" name="insumo[preco]" step="0.01"><br/>
+            Quantidade <input type="number" name="insumo[quantidade]" step="0.01"><br/>
+            
+            <button type="submit">Criar</button> 
+        <% end %>
+    </body>
+</html>

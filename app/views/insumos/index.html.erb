@@ -1,0 +1,50 @@
+<html>
+    <%= nav_bar brand: "Insumos teste", brand_link: root_url %>
+    <div class="container">
+        <body>
+            <table class="table table-bordered table hover">
+                <thead>
+                    <tr>
+                        <td>Código</td>
+                        <td>Descrição</td>
+                        <td>Preço</td>
+                        <td>Quantidade</td>
+                    </tr>
+                </thead>
+                <body>
+                    <%@ConsInsumos.each do |insumo| %>
+                        <tr>
+                            <td><%=insumo.codigo%></td>
+                            <td><%=insumo.descricao%></td>
+                            <td><%=insumo.preco%></td>
+                            <td><%=insumo.quantidade%></td>
+                        </tr>
+                    <%end%>
+                </body>
+            </table>
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Produto com Desconto</h4>
+            </div>
+            <table class="table table-bordered table hover">
+                <thead>
+                    <tr>
+                        <td>Código</td>
+                        <td>Descrição</td>
+                        <td>Preço</td>
+                        <td>Quantidade</td>
+                    </tr>
+                </thead>
+                <body>
+                    <%@ConsInsumos_com_desconto.each do |insumo| %>
+                        <tr>
+                            <td><%=insumo.codigo%></td>
+                            <td><%=insumo.descricao%></td>
+                            <td><%=insumo.preco%></td>
+                            <td><%=insumo.quantidade%></td>
+                        </tr>
+                    <%end%>
+                </body>
+            </table>        
+        </body>
+    </div>
+</html>
