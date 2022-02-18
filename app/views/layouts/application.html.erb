@@ -15,6 +15,9 @@
       <%= menu_group do %>
         <%= menu_item "Criar Novo Insumo", new_insumo_path %>
       <% end %>
+      <%= menu_group do %>
+        <%= menu_item "Departamentos", departamentos_path %>
+      <% end %>
       <%= form_tag busca_insumo_path, method: :get, class:"navbar-form navbar-right" do %>
         <div class="forms-group" >
           <%= text_field_tag :descricao, @descricao, class:"form-control"%>

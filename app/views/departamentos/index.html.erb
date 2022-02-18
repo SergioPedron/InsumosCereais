@@ -1,0 +1,35 @@
+<% if flash[:notice] %>
+    <div class="alert alert-success" role="alert">
+        <%= flash[:notice] %>
+    </div>
+<% end %>
+
+<h3 class="text-center">Departamentos</h3>
+
+<table class="table table-bordered table hover">
+    <thead>
+        <tr>
+            <td>Nome do Departamento</td>
+            <td colspan="3" >
+        </tr>
+    </thead>
+    <body>
+        <%@departamentos.each do |departamento| %>
+            <tr>
+                <td><%=departamento.nome%></td>
+                <td>
+                  <%=button_to "Ver Insumos", departamento_path(departamento), method: :get, class:"btn btn-primary" %>      
+                </td>
+                <td>
+                  <%=button_to "Editar", edit_departamento_path(departamento), method: :get, class:"btn btn-primary" %>      
+                </td>
+                <td>
+                  <%=button_to "Remover", departamento, method: :delete, class:"btn btn-danger btn-sm",
+                      data: {confirm: "Tem certeza que deseja remover o departamento #{departamento.nome} ?"} %>
+                </td>
+            </tr>
+        <%end%>
+    </body>
+</table>
+
+<%=button_to "Criar Departamento", new_departamento_path, method: :get, class:"btn btn-primary" %>

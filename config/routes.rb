@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :departamentos
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -11,8 +12,9 @@ Rails.application.routes.draw do
 
 
   Rails.application.routes.draw do
+    resources :departamentos
     get "insumos/busca", to: "insumos#busca", as: :busca_insumo
-    resources :insumos, only: [:new, :create, :destroy]
+    resources :insumos, only: [:new, :create, :destroy, :edit, :update]
     root to: "insumos#index"  
   end  
 

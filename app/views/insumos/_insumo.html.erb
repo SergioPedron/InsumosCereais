@@ -1,0 +1,13 @@
+<tr>
+    <td><%=insumo.codigo%></td>
+    <td><%=insumo.descricao%></td>
+    <td><%=insumo.departamento.nome%></td>
+    <td><%=insumo.preco%></td>
+    <td><%=insumo.quantidade%></td>
+    <% if local_assigns[:ExibirBotoes]  %> 
+      <td><%=button_to "Editar", edit_insumo_path(insumo), method: :get, class:"btn btn-primary" %></td>
+      <td><%=button_to "Remover", insumo, method: :delete, class:"btn btn-danger btn-sm",
+              data: {confirm: "Tem certeza que deseja remover o insumo #{insumo.descricao} ?"} %>
+      </td>
+    <% end %>  
+</tr>

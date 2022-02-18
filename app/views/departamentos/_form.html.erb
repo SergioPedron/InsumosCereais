@@ -1,0 +1,20 @@
+<% @departamento.errors.full_messages.each do |msg| %>
+    <div class="alert alert-danger" role="alert">
+        <%= msg %>    
+    </div>
+<% end %>    
+
+<%= form_for @departamento do |form| %> 
+
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="form-group">
+                <%= form.label :nome, "Nome" %>
+                <%= form.text_area :nome, class:"form-control", rows:2 %>
+            </div>  
+        </div>
+    </div>
+
+    <%= form.submit texto_da_acao, class:"btn btn-primary" %>
+
+<% end %>

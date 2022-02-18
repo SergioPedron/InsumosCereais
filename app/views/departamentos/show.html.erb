@@ -1,0 +1,33 @@
+<p style="color: green"><%= notice %></p>
+
+<table class="table table-bordered table hover">
+    <thead>
+        <tr>
+            <td>Código</td>
+            <td>Descrição</td>
+            <td>Departamento</td>
+            <td>Preço</td>
+            <td>Quantidade</td>
+            <!-- <td colspan="2" > -->
+        </tr>
+    </thead>
+    <body>
+        <%= render @insumos_por_departamento, ExibirBotoes: false %>
+        <!--
+        <%@insumos_por_departamento.each do |insumo| %>
+            <tr>
+                <td><%=insumo.codigo%></td>
+                <td><%=insumo.descricao%></td>
+                <td><%=insumo.departamento.nome%></td>
+                <td><%=insumo.preco%></td>
+                <td><%=insumo.quantidade%></td>
+            </tr>
+        <% end %>    
+        -->
+    </body>
+</table>
+
+
+<div>
+  <%= link_to "Retornar para Departamentos", departamentos_path,  class:"btn btn-primary" %>  
+</div>

@@ -10,15 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_14_190449) do
-    create_table "insumos", force: :cascade do |t|
-      t.string "codigo", limit: 20
-      t.string "descricao", limit: 500
-      t.decimal "quantidade", precision: 20, scale: 10
-      t.decimal "preco", precision: 20, scale: 10
-      t.datetime "created_at", null: false
-      t.datetime "updated_at", null: false
-    end
-  
+ActiveRecord::Schema[7.0].define(version: 2022_02_16_165942) do
+  create_table "departamentos", force: :cascade do |t|
+    t.string "nome"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-  
+
+  create_table "insumos", force: :cascade do |t|
+    t.string "codigo", limit: 20
+    t.string "descricao", limit: 500
+    t.decimal "quantidade"
+    t.decimal "preco"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "departamento_id", precision: 38
+  end
+
+end

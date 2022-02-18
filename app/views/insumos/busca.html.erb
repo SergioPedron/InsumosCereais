@@ -3,23 +3,13 @@
         <tr>
             <td>Código</td>
             <td>Descrição</td>
+            <td>Departamento</td>
             <td>Preço</td>
             <td>Quantidade</td>
-            <td colspan="1" >
+            <td colspan="2" >
         </tr>
     </thead>
     <body>
-        <%@insumos.each do |insumo| %>
-            <tr>
-                <td><%=insumo.codigo%></td>
-                <td><%=insumo.descricao%></td>
-                <td><%=insumo.preco%></td>
-                <td><%=insumo.quantidade%></td>
-                <!-- Utilizar um botão e não mais um link <td><%= link_to "Remover", insumo, method: :delete%></td> -->
-                <td><%=button_to "Remover", insumo, method: :delete, class:"btn btn-danger btn-sm",
-                      data: {confirm: "Tem certeza que deseja remover o insumo #{insumo.descricao} ?"} %>
-                </td>
-            </tr>
-        <%end%>
+      <%= render @insumos, ExibirBotoes: true %>
     </body>
 </table>
