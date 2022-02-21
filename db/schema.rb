@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_16_165942) do
+ActiveRecord::Schema[7.0].define(version: 2022_02_21_131557) do
   create_table "departamentos", force: :cascade do |t|
     t.string "nome"
     t.datetime "created_at", null: false
@@ -25,6 +25,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_16_165942) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "departamento_id", precision: 38
+    t.index ["departamento_id"], name: "idx_depto"
   end
 
+  add_foreign_key "insumos", "departamentos", name: "fk_insumo_depto"
 end

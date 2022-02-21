@@ -24,8 +24,12 @@
                   <%=button_to "Editar", edit_departamento_path(departamento), method: :get, class:"btn btn-primary" %>      
                 </td>
                 <td>
+                  <!--
                   <%=button_to "Remover", departamento, method: :delete, class:"btn btn-danger btn-sm",
                       data: {confirm: "Tem certeza que deseja remover o departamento #{departamento.nome} ?"} %>
+                  -->    
+                  <%=button_to "Remover", departamento, method: :delete, class:"btn btn-danger btn-sm",
+                      data: {confirm: "Tem certeza que deseja remover o departamento ?"} %>
                 </td>
             </tr>
         <%end%>
