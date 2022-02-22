@@ -14,6 +14,8 @@ gem "rails", "~> 7.0.2"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
+gem "sass-rails"
+
 # Use oracle as the database for Active Record
 #gem "activerecord-oracle_enhanced-adapter"
 

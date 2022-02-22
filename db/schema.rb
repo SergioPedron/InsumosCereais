@@ -25,7 +25,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_21_131557) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "departamento_id", precision: 38
-    t.index ["departamento_id"], name: "idx_depto"
   end
 
   add_foreign_key "insumos", "departamentos", name: "fk_insumo_depto"

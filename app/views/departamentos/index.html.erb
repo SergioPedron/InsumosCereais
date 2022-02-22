@@ -3,6 +3,11 @@
         <%= flash[:notice] %>
     </div>
 <% end %>
+<% if flash[:danger] %>
+    <div class="alert alert-danger" role="alert">
+        <%= flash[:danger] %>
+    </div>
+<% end %>
 
 <h3 class="text-center">Departamentos</h3>
 
@@ -24,12 +29,8 @@
                   <%=button_to "Editar", edit_departamento_path(departamento), method: :get, class:"btn btn-primary" %>      
                 </td>
                 <td>
-                  <!--
                   <%=button_to "Remover", departamento, method: :delete, class:"btn btn-danger btn-sm",
-                      data: {confirm: "Tem certeza que deseja remover o departamento #{departamento.nome} ?"} %>
-                  -->    
-                  <%=button_to "Remover", departamento, method: :delete, class:"btn btn-danger btn-sm",
-                      data: {confirm: "Tem certeza que deseja remover o departamento ?"} %>
+                  data: {confirm: "Tem certeza que deseja remover o departamento #{departamento.nome} ?"} %>
                 </td>
             </tr>
         <%end%>

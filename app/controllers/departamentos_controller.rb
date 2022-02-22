@@ -33,13 +33,19 @@ class DepartamentosController < ApplicationController
   end
 
   def destroy
-    @departamento.destroy
+    begin
+      @departamento.destroy
+      flash[:notice] = "Departamento foi excluído com sucesso."
+    rescue WError => e  
+      flash[:danger] = e.message
+    end    
+    redirect_to departamentos_path
 
-    respond_to do |format|
-      format.html { redirect_to departamentos_url, notice: "Departamento foi excluído com sucesso." }
-      format.json { head :no_content }
-    end
-  end
+#      respond_to do |format|
+#        format.html { redirect_to departamentos_url, notice: "Departamento foi excluído com sucesso." }
+#        format.json { head :no_content }
+#      end  
+  end    
 
   def show
     @insumos_por_departamento = Insumo.where("departamento_id = ?", params[:id])
