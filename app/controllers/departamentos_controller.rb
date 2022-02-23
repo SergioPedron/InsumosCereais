@@ -51,6 +51,10 @@ class DepartamentosController < ApplicationController
     @insumos_por_departamento = Insumo.where("departamento_id = ?", params[:id])
   end  
 
+  def troca
+    @troca_depto_insumos = Insumo.where("departamento_id = ?", params[:id])
+  end
+
   private
     def set_departamento
       @departamento = Departamento.find(params[:id])

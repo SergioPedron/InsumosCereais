@@ -12,9 +12,12 @@ Rails.application.routes.draw do
 
 
   Rails.application.routes.draw do
+    get 'departamentos/troca/:id', controller: 'departamentos', action: 'troca', as: 'troca_departamento'
     resources :departamentos
+      
     get "insumos/busca", to: "insumos#busca", as: :busca_insumo
     resources :insumos, only: [:new, :create, :destroy, :edit, :update]
+    
     root to: "insumos#index"  
   end  
 

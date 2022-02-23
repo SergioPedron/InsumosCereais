@@ -1,0 +1,34 @@
+<p style="color: green"><%= notice %></p>
+
+<h3 class="text-center">Alterar Departamento nos Insumos</h3>
+
+ <div class="row">
+    <div class="col-sm-2">
+        <div class="form-group">
+            <%ins = @troca_depto_insumos.first%>
+            <h3> <span class="label label-default">Departamento Atual: <%=@troca_depto_insumos.first.departamento.nome%></span></h3>
+            <h3> <span class="label label-default">Novo Departamento:</span></h3>
+      
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table hover">
+    <thead>
+        <tr>
+            <td>Código</td>
+            <td>Descrição</td>
+            <td>Departamento</td>
+            <td>Preço</td>
+            <td>Quantidade</td>
+        </tr>
+    </thead>
+    <body>
+        <%= render @troca_depto_insumos, ExibirBotoes: false %>
+     </body>
+</table>
+
+
+<div>
+  <%= link_to "Retornar para Departamentos", departamentos_path,  class:"btn btn-primary" %>  
+</div>
