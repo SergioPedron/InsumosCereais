@@ -90,10 +90,12 @@
         document.getElementById('nome_novo_depto').value = GetTextSelect(document.getElementById('id_dep_sel'));
     }
     function ConfirmaTroca() {
+        /*
         if (document.getElementById('id_novo_depto').value == 0) {
             alert("Novo Departamento precisa ser informado !!");
             return false;
-        }    
+        } 
+        */   
         var confirmacao = confirm("Deseja substituir o departamento "+document.getElementById('nome_atual_depto').value
                         +" pelo departamento "+document.getElementById('nome_novo_depto').value+" para todos os insumos ?");
         if (confirmacao == true) {
