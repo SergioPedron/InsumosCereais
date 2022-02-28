@@ -46,8 +46,7 @@
                 <div class="form-group">
                     <h2>
                         <select class="label label-info" id="id_dep_sel" onChange="Atrib_id_dep_sel()">
-                            <!-- <option selected>Selecione um departamento ...</option> -->
-                            <option value="-1" selected>Selecione um departamento ...</option>
+                            <option value=0 selected>Selecione um departamento ...</option>
                             <%@select_departamentos.each do |depto| %>
                                 <option class="text-left" value=<%=depto.id%>> <%=depto.nome%></option>
                             <%end%>    
@@ -91,7 +90,7 @@
         document.getElementById('nome_novo_depto').value = GetTextSelect(document.getElementById('id_dep_sel'));
     }
     function ConfirmaTroca() {
-        if (document.getElementById('id_novo_depto').value == -1 || document.getElementById('id_novo_depto').value == '') {
+        if (document.getElementById('id_novo_depto').value == 0) {
             alert("Novo Departamento precisa ser informado !!");
             return false;
         }    

@@ -20,7 +20,7 @@ class TrocaDepartamento
     public
 
     def TrocarDepartamento
-        if @Id_Novo_Depto.empty? or (@Id_Novo_Depto == '-1')
+        if @Id_Novo_Depto.empty? or (@Id_Novo_Depto == 0)
           raise WError.new 'Novo Departamento precisa ser informado !'
         end  
         if @Id_Novo_Depto == @Id_Ant_Depto
