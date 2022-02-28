@@ -50,6 +50,7 @@
                             <%@select_departamentos.each do |depto| %>
                                 <option class="text-left" value=<%=depto.id%>> <%=depto.nome%></option>
                             <%end%>    
+                            
                         </select>
                     </h2>
                 </div>
@@ -90,12 +91,14 @@
         document.getElementById('nome_novo_depto').value = GetTextSelect(document.getElementById('id_dep_sel'));
     }
     function ConfirmaTroca() {
-        /*
-        if (document.getElementById('id_novo_depto').value == 0) {
-            alert("Novo Departamento precisa ser informado !!");
+        if (document.getElementById('id_novo_depto').value == '')  {
+            alert("Novo Departamento precisa ser informado (1) !!");
             return false;
         } 
-        */   
+        if (document.getElementById('id_novo_depto').value == 0) {
+            alert("Novo Departamento precisa ser informado (2) !!");
+            return false;
+        } 
         var confirmacao = confirm("Deseja substituir o departamento "+document.getElementById('nome_atual_depto').value
                         +" pelo departamento "+document.getElementById('nome_novo_depto').value+" para todos os insumos ?");
         if (confirmacao == true) {
