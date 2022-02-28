@@ -84,8 +84,9 @@
     </div>    
 <% end %>    
 
-<!-- <script src="/assets/WonderFunctions.js"> </script> -->
+<script src="/assets/WonderFunctions.js"> </script>
 <script type="text/javascript">
+    /*
     function GetValueSelect(select) {
         var option = select.options[select.selectedIndex]; 
         return option.value; 
@@ -94,6 +95,7 @@
         var option = select.options[select.selectedIndex]; 
         return option.text;
     }
+    */
     function Atrib_id_dep_sel() {
         document.getElementById('id_novo_depto').value = GetValueSelect(document.getElementById('id_dep_sel'));
         document.getElementById('nome_novo_depto').value = GetTextSelect(document.getElementById('id_dep_sel'));
@@ -101,6 +103,8 @@
     function ConfirmaTroca() {
         /*
         No heroku, não está passando por  Atrib_id_dep_sel().  Testar retirando funções de WonderFunciont.js
+        Funcionou retirando assets/WonderFunctions.js
+        Verifiar asset pipeline
         */
         if (document.getElementById('id_novo_depto').value == '')  {
             alert("Novo Departamento precisa ser informado (1) !!");
