@@ -12,7 +12,8 @@ Rails.application.routes.draw do
 
 
   Rails.application.routes.draw do
-    get 'departamentos/troca/:id', controller: 'departamentos', action: 'troca', as: 'troca_departamento'
+    get 'departamentos/troca/:id',       controller: 'departamentos', action: 'troca',       as: 'troca_departamento'
+    get 'departamentos/grava_troca/:id', controller: 'departamentos', action: 'grava_troca', as: 'grava_troca_departamento'
     resources :departamentos
       
     get "insumos/busca", to: "insumos#busca", as: :busca_insumo

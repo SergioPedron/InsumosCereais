@@ -1,34 +1,116 @@
-<p style="color: green"><%= notice %></p>
-
-<h3 class="text-center">Alterar Departamento nos Insumos</h3>
-
- <div class="row">
-    <div class="col-sm-2">
-        <div class="form-group">
-            <%ins = @troca_depto_insumos.first%>
-            <h3> <span class="label label-default">Departamento Atual: <%=@troca_depto_insumos.first.departamento.nome%></span></h3>
-            <h3> <span class="label label-default">Novo Departamento:</span></h3>
-      
-        </div>
+<% if flash[:notice] %>
+    <div class="alert alert-success" role="alert">
+        <%= flash[:notice] %>
     </div>
-</div>
+<% end %>
+<% if flash[:danger] %>
+    <div class="alert alert-danger" role="alert">
+        <%= flash[:danger] %>
+    </div>
+<% end %>
 
-<table class="table table-bordered table hover">
-    <thead>
-        <tr>
-            <td>Código</td>
-            <td>Descrição</td>
-            <td>Departamento</td>
-            <td>Preço</td>
-            <td>Quantidade</td>
-        </tr>
-    </thead>
-    <body>
-        <%= render @troca_depto_insumos, ExibirBotoes: false %>
-     </body>
-</table>
+<%= form_tag grava_troca_departamento_path, :method => 'get' do %>
+    
+    <%=hidden_field_tag 'id_novo_depto', "" %> 
+    <%=hidden_field_tag 'nome_novo_depto', "" %> 
+    <%=hidden_field_tag 'nome_atual_depto', @departamento.nome %> 
+    <!-- Campo oculto para envio do id do novo departamento. Este campo é preenchido no onChange do selec.
+         Equivalente a:  <input type="hidden" name="id_novo_depto" id="id_novo_depto" value="" autocomplete="off" /> 
+    -->
 
+    <div class="container">
+        <h1 class="text-center">Alterar Departamento nos Insumos</h1>
 
-<div>
-  <%= link_to "Retornar para Departamentos", departamentos_path,  class:"btn btn-primary" %>  
-</div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <h2> <span class="label label-default">Departamento Atual: </span></h2>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <h2> <span class="label label-info">
+                        <%=@departamento.nome%>
+                    </span></h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <h2><span class = "label label-default">Novo Departamento: </span></h2>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <h2>
+                        <select class="label label-info" id="id_dep_sel" onChange="Atrib_id_dep_sel()">
+                            <!-- <option selected>Selecione um departamento ...</option> -->
+                            <option value="-1" selected>Selecione um departamento ...</option>
+                            <%@select_departamentos.each do |depto| %>
+                                <option class="text-left" value=<%=depto.id%>> <%=depto.nome%></option>
+                            <%end%>    
+                        </select>
+                    </h2>
+                </div>
+            </div>
+        </div>    
+    </div>    
+
+    <h5 class="text-left">Insumos afetados pela alteração</h5>
+    <table class="table table-bordered table hover">
+        <thead>
+            <tr>
+                <td>Código</td>
+                <td>Descrição</td>
+                <td>Departamento</td>
+                <td>Preço</td>
+                <td>Quantidade</td>
+            </tr>
+        </thead>
+        <body>
+            <%= render @troca_depto_insumos, ExibirBotoes: false %>
+        </body>
+    </table>
+
+    <div class="row">
+        <div class="col-sm-1">
+            <%= link_to "Retornar", departamentos_path,  class:"btn btn-primary" %>  
+        </div>
+        <div class="col-sm-1">
+            <%= submit_tag "Trocar Departamento", class: "btn btn-primary", :onclick => "return ConfirmaTroca();" %>
+        </div>
+    </div>    
+<% end %>    
+
+<script src="/assets/WonderFunctions.js"> </script>
+<script type="text/javascript">
+    function Atrib_id_dep_sel() {
+        document.getElementById('id_novo_depto').value = GetValueSelect(document.getElementById('id_dep_sel'));
+        document.getElementById('nome_novo_depto').value = GetTextSelect(document.getElementById('id_dep_sel'));
+    }
+    function ConfirmaTroca() {
+        if (document.getElementById('id_novo_depto').value == -1 || document.getElementById('id_novo_depto').value == '') {
+            alert("Novo Departamento precisa ser informado !!");
+            return false;
+        }    
+        var confirmacao = confirm("Deseja substituir o departamento "+document.getElementById('nome_atual_depto').value
+                        +" pelo departamento "+document.getElementById('nome_novo_depto').value+" para todos os insumos ?");
+        if (confirmacao == true) {
+            confirmacao = confirm("A T E N Ç Ã O !!! \n\n Deseja realmente substituir o departamento "+document.getElementById('nome_atual_depto').value
+                        +" pelo departamento "+document.getElementById('nome_novo_depto').value+" para todos os insumos ?");
+            if (confirmacao == true) {            
+              return true
+            }  
+            else{
+                alert("Troca de departamento cancelada !");
+                return false
+            }        
+        }
+        else{
+            alert("Troca de departamento cancelada !");
+            return false
+        }        
+    }    
+</script>
