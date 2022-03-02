@@ -1,24 +1,9 @@
-# README
+Atualmente a pesquisa se concentra no estudo da compilação de JS no Rails 7
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby 3.1
+* Rails 7.0.2.2
 
-Things you may want to cover:
+* Dependências 
+  * WebPack 4.46.0
+  * NodeJS 16.14.0
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
