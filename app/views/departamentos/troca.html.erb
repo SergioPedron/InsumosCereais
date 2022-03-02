@@ -1,3 +1,5 @@
+<%= javascript_pack_tag 'WonderFunctions' %>
+
 <% if flash[:notice] %>
     <div class="alert alert-success" role="alert">
         <%= flash[:notice] %>
@@ -14,6 +16,7 @@
     <%=hidden_field_tag 'id_novo_depto', "" %> 
     <%=hidden_field_tag 'nome_novo_depto', "" %> 
     <%=hidden_field_tag 'nome_atual_depto', @departamento.nome %> 
+    <%=hidden_field_tag 'id_atual_depto', @departamento.id %> 
     <!-- Campo oculto para envio do id do novo departamento. Este campo é preenchido no onChange do selec.
          Equivalente a:  <input type="hidden" name="id_novo_depto" id="id_novo_depto" value="" autocomplete="off" /> 
     -->
@@ -84,26 +87,12 @@
     </div>    
 <% end %>    
 
-<!-- <script src="/assets/javascripts/WonderFunctions.js"> </script> -->
 <script type="text/javascript">
-    function GetValueSelect(select) {
-        var option = select.options[select.selectedIndex]; 
-        return option.value; 
-    }
-    function GetTextSelect(select) {
-        var option = select.options[select.selectedIndex]; 
-        return option.text;
-    }
     function Atrib_id_dep_sel() {
         document.getElementById('id_novo_depto').value = GetValueSelect(document.getElementById('id_dep_sel'));
         document.getElementById('nome_novo_depto').value = GetTextSelect(document.getElementById('id_dep_sel'));
     }
     function ConfirmaTroca() {
-        /*
-        No heroku, não está passando por  Atrib_id_dep_sel().  Testar retirando funções de WonderFunciont.js
-        Funcionou retirando assets/WonderFunctions.js
-        Verificar asset pipeline ou exceução de código estático
-        */
         if (document.getElementById('id_novo_depto').value == '')  {
             alert("Novo Departamento precisa ser informado (1) !!");
             return false;
@@ -111,7 +100,11 @@
         if (document.getElementById('id_novo_depto').value == 0) {
             alert("Novo Departamento precisa ser informado (2) !!");
             return false;
-        } 
+        }
+        if (document.getElementById('id_novo_depto').value == document.getElementById('id_atual_depto').value) {
+            alert("Novo departamento precisa ser diferente do departamento atual !!");
+            return false;
+        }
         var confirmacao = confirm("Deseja substituir o departamento "+document.getElementById('nome_atual_depto').value
                         +" pelo departamento "+document.getElementById('nome_novo_depto').value+" para todos os insumos ?");
         if (confirmacao == true) {
