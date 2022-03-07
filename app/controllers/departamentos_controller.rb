@@ -57,8 +57,9 @@ class DepartamentosController < ApplicationController
   def grava_troca
     ant_id_depto  = params[:id]
     novo_id_depto = params[:id_novo_depto]
+    ids_insumos   = params[:insumos_selec]
     begin
-      oTrocaDep = TrocaDepartamento.new(ant_id_depto, novo_id_depto).TrocarDepartamento
+      oTrocaDep = TrocaDepartamento.new(ant_id_depto, novo_id_depto, ids_insumos).TrocarDepartamento
       flash[:notice] = "Departamento foi trocado com sucesso."
     rescue WError => e  
       flash[:danger] = e.message

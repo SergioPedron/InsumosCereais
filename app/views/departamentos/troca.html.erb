@@ -61,10 +61,11 @@
         </div>    
     </div>    
 
-    <h5 class="text-left">Insumos afetados pela alteração</h5>
+    <h5 class="text-left">Selecione os Insumos para a alteração do Departamento</h5>
     <table class="table table-bordered table hover">
         <thead>
             <tr>
+                <td>Selecionar</td>
                 <td>Código</td>
                 <td>Descrição</td>
                 <td>Departamento</td>
@@ -73,7 +74,21 @@
             </tr>
         </thead>
         <body>
-            <%= render @troca_depto_insumos, ExibirBotoes: false %>
+            <!-- <%= render @troca_depto_insumos, ExibirBotoes: false%> -->
+            <%@troca_depto_insumos.each do |insumo| %>
+                <tr>
+                    <!-- <td><%= check_box_tag "insumos_selec[#{insumo.id}]", insumo.id, :name => "insumos_selec[]" %></td> -->
+                    <!-- Utilizar se for preciso passar chave/valor Ex.: {"4"=>"4", "20"=>"20"} -->
+
+                    <!-- Envia através de params um array simples dos ids dos insumos selecionados -->
+                    <td><%= check_box_tag "insumos_selec[]", insumo.id, checked=true %></td>
+                    <td><%=insumo.codigo%></td>
+                    <td><%=insumo.descricao%></td>
+                    <td><%=insumo.departamento.nome%></td>
+                    <td><%=insumo.preco%></td>
+                    <td><%=insumo.quantidade%></td>
+                </tr>
+            <% end %>                
         </body>
     </table>
 
@@ -105,11 +120,15 @@
             alert("Novo departamento precisa ser diferente do departamento atual !!");
             return false;
         }
+        if (document.querySelectorAll('input:checked').length === 0)  {     /*Problema na validação se houver mais checks fora do grid*/
+            alert("Ao menos um Insumo deve ser selecionado !");
+            return false;
+        }
         var confirmacao = confirm("Deseja substituir o departamento "+document.getElementById('nome_atual_depto').value
-                        +" pelo departamento "+document.getElementById('nome_novo_depto').value+" para todos os insumos ?");
+                        +" pelo departamento "+document.getElementById('nome_novo_depto').value+" para os insumos selecionados ?");
         if (confirmacao == true) {
             confirmacao = confirm("A T E N Ç Ã O !!! \n\n Deseja realmente substituir o departamento "+document.getElementById('nome_atual_depto').value
-                        +" pelo departamento "+document.getElementById('nome_novo_depto').value+" para todos os insumos ?");
+                        +" pelo departamento "+document.getElementById('nome_novo_depto').value+" para os insumos selecionados ?");
             if (confirmacao == true) {            
               return true
             }  
